@@ -1,0 +1,72 @@
+:root{
+  --green:#006c35;--green-dark:#004d26;--gold:#c9a24b;
+  --bg:#f4f1e8;--card:#fff;--text:#1c2b22;--muted:#6b7a70;
+  --bad:#b3261e;--warn:#e08a00;--good:#2e7d32;--radius:16px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Tajawal","Segoe UI",Tahoma,sans-serif;padding:20px 14px}
+.wrap{max-width:640px;margin:0 auto;display:grid;gap:14px}
+.top{
+  background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;
+  border-bottom:4px solid var(--gold);border-radius:var(--radius);
+  padding:18px 20px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.top h1{margin:0;font-size:1.6rem}
+.sub{margin:2px 0 0;opacity:.9;font-size:.9rem}
+.top input{padding:8px 10px;border-radius:10px;border:0;font:inherit}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.card{background:var(--card);border-radius:var(--radius);padding:14px 10px;text-align:center;box-shadow:0 4px 14px rgba(0,60,30,.08)}
+.card span{display:block;color:var(--muted);font-size:.85rem}
+.card strong{display:block;margin-top:4px;font-size:1.05rem;overflow-wrap:anywhere}
+.card.income strong{color:var(--good)}
+.card.expense strong{color:var(--bad)}
+.card strong.neg{color:var(--bad)}
+.budget-msg{margin:0;padding:12px 14px;border-radius:12px;font-weight:700}
+.budget-msg.good{background:#e6f4ea;color:#1b5e20}
+.budget-msg.warn{background:#fff4e0;color:#8a5200}
+.budget-msg.bad{background:#fdeceb;color:var(--bad)}
+.panel{background:var(--card);border-radius:var(--radius);padding:16px 18px;box-shadow:0 4px 14px rgba(0,60,30,.08)}
+.panel h2{margin:0 0 12px;font-size:1.1rem}
+.panel-head{display:flex;justify-content:space-between;align-items:center}
+form{display:grid;gap:10px}
+input[type=text],input[type=number],input[type=date],select{
+  width:100%;padding:11px;border:1.5px solid #d6d9d2;border-radius:10px;font:inherit;background:#fff;
+}
+input:focus,select:focus{outline:2px solid var(--gold);border-color:transparent}
+button{font:inherit;cursor:pointer}
+form button[type=submit],#saveBudget{
+  border:0;background:var(--green);color:#fff;border-radius:10px;padding:11px 16px;font-weight:700;
+}
+form button[type=submit]:hover,#saveBudget:hover{background:var(--green-dark)}
+.seg{display:flex;background:#eef0ea;border-radius:999px;padding:4px}
+.seg label{flex:1}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg span{display:block;text-align:center;padding:8px;border-radius:999px;font-weight:700;color:var(--muted);cursor:pointer}
+.seg input:checked + span{background:var(--gold);color:#fff}
+.seg input:focus-visible + span{outline:2px solid var(--green)}
+.vat{display:flex;gap:8px;align-items:center;font-size:.9rem;color:var(--muted)}
+.vat input{width:auto}
+.budget-row{display:flex;gap:8px}
+.bar{height:10px;background:#e8ebe4;border-radius:999px;margin-top:12px;overflow:hidden}
+.bar div{height:100%;width:0;background:var(--good);transition:width .3s}
+.bar div.warn{background:var(--warn)}
+.bar div.bad{background:var(--bad)}
+.chart-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center}
+.legend{list-style:none;margin:0;padding:0;flex:1 1 220px;display:grid;gap:8px}
+.legend li{display:flex;align-items:center;gap:8px;font-size:.9rem}
+.legend i{width:12px;height:12px;border-radius:50%;flex:none}
+.legend span{flex:1}
+.tx-list{list-style:none;margin:0;padding:0}
+.tx{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #eceee8}
+.tx>div{flex:1;min-width:0}
+.tx strong{display:block;overflow-wrap:anywhere}
+.tx small{color:var(--muted)}
+.tx .amt{font-weight:700;white-space:nowrap}
+.tx.income .amt{color:var(--good)}
+.tx.expense .amt{color:var(--bad)}
+.del{border:0;background:none;color:var(--bad);font-size:1.1rem;padding:4px 8px;border-radius:8px}
+.del:hover{background:#fbe9e7}
+.link{border:0;background:none;color:var(--green);font-weight:700;text-decoration:underline}
+.empty{text-align:center;color:var(--muted);margin:10px 0 0}
+@media (max-width:420px){.cards{grid-template-columns:1fr}}

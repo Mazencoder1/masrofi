@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>مصروفي - متتبع المصاريف</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <div>
+        <h1>مصروفي 💰</h1>
+        <p class="sub">وين راحت الفلوس؟ خلنا نعرف!</p>
+      </div>
+      <input type="month" id="monthPicker" aria-label="الشهر">
+    </header>
+
+    <section class="cards">
+      <article class="card income"><span>الدخل</span><strong id="sumIncome">0</strong></article>
+      <article class="card expense"><span>المصروف</span><strong id="sumExpense">0</strong></article>
+      <article class="card balance"><span>الباقي</span><strong id="sumBalance">0</strong></article>
+    </section>
+
+    <p id="budgetMsg" class="budget-msg" hidden></p>
+
+    <section class="panel">
+      <h2>سجّل عملية</h2>
+      <form id="txForm" autocomplete="off">
+        <div class="seg" role="radiogroup" aria-label="النوع">
+          <label><input type="radio" name="type" value="expense" checked><span>مصروف</span></label>
+          <label><input type="radio" name="type" value="income"><span>دخل</span></label>
+        </div>
+        <input id="txTitle" type="text" placeholder="وش صرفت عليه؟ (مثال: قهوة، بنزين)" maxlength="60" required>
+        <input id="txAmount" type="number" inputmode="decimal" min="0.01" step="0.01" placeholder="المبلغ بالريال" required>
+        <select id="txCategory" aria-label="التصنيف"></select>
+        <input id="txDate" type="date" required>
+        <label class="vat"><input type="checkbox" id="txVat"> المبلغ يشمل ضريبة القيمة المضافة (١٥٪)</label>
+        <button type="submit">أبشر، سجّلها</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>ميزانية الشهر</h2>
+      <div class="budget-row">
+        <input id="budgetInput" type="number" inputmode="decimal" min="0" step="1" placeholder="كم تبي تصرف بالشهر؟">
+        <button id="saveBudget" type="button">حفظ</button>
+      </div>
+      <div class="bar" aria-hidden="true"><div id="budgetFill"></div></div>
+    </section>
+
+    <section class="panel">
+      <h2>توزيع المصاريف</h2>
+      <div class="chart-row">
+        <canvas id="donut" width="220" height="220" role="img" aria-label="رسم دائري للمصاريف حسب التصنيف"></canvas>
+        <ul id="legend" class="legend"></ul>
+      </div>
+      <p id="chartEmpty" class="empty" hidden>ما فيه مصاريف هالشهر للحين 👌</p>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>العمليات</h2>
+        <button id="exportCsv" class="link" type="button">تصدير CSV</button>
+      </div>
+      <ul id="txList" class="tx-list"></ul>
+      <p id="listEmpty" class="empty" hidden>ما فيه عمليات في هالشهر.</p>
+    </section>
+  </main>
+
+  <script src="js/store.js"></script>
+  <script src="js/chart.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
